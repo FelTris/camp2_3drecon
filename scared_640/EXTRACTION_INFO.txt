@@ -1,0 +1,15 @@
+Source video: ../rgb.mp4
+Original video: 1280x2048, 25 fps, 953 frames, 38.12 s
+Extraction rate: 5 fps
+Extracted stereo pairs: 191
+Output image size: 1280x1024
+
+Stereo split used:
+- left_image: top half of stacked video frame, crop=1280:1024:0:0
+- right_image: bottom half of stacked video frame, crop=1280:1024:0:1024
+
+Reasoning:
+The public SCARED descriptions confirm this is a stereo endoscopic dataset, but
+the vertical MP4 stack order was not found in an official online source. In this
+local copy, the first bottom crop best matches Right_Image.png, so the extraction
+uses top=left and bottom=right.
