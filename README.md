@@ -63,6 +63,8 @@ The next notebook cell installs the reconstruction stack from the cloned checkou
 INSTALL_DEPENDENCIES = running_in_colab()
 ```
 
+The install cell streams the shell script output into the notebook with step markers and timestamps, so if Colab stalls you can see whether it is installing pip packages, building `gsplat`, or cloning an external repository.
+
 The installer reuses Colab's existing PyTorch when it is already available. Set `INSTALL_TORCH=1` before running the script if you want to force installation from `requirements-torch-cu118.txt`.
 
 The notebooks use direct Python APIs rather than shelling out to trainer scripts:
