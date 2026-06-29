@@ -57,10 +57,10 @@ For Google Colab, open one of the expanded notebooks and run the first setup cel
 REPO_URL = "https://github.com/FelTris/camp2_3drecon.git"
 ```
 
-Then install the reconstruction stack from the cloned checkout:
+The next notebook cell installs the reconstruction stack from the cloned checkout:
 
 ```python
-!bash scripts/install_reconstruction_stack.sh
+INSTALL_DEPENDENCIES = running_in_colab()
 ```
 
 The installer reuses Colab's existing PyTorch when it is already available. Set `INSTALL_TORCH=1` before running the script if you want to force installation from `requirements-torch-cu118.txt`.
