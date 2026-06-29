@@ -51,12 +51,15 @@ bash scripts/install_reconstruction_stack.sh
 python -m ipykernel install --user --name camp2-3drecon --display-name "CAMP II 3D Reconstruction"
 ```
 
-For Google Colab, clone the repository, change into it, and run the same installer:
+For Google Colab, open one of the expanded notebooks and run the first setup cell. It clones this repository into `/content/camp2_3drecon` and changes the notebook runtime into that checkout:
 
 ```python
-%cd /content
-!git clone <repo-url> CAMP2
-%cd /content/CAMP2
+REPO_URL = "https://github.com/FelTris/camp2_3drecon.git"
+```
+
+Then install the reconstruction stack from the cloned checkout:
+
+```python
 !bash scripts/install_reconstruction_stack.sh
 ```
 
