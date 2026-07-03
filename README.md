@@ -6,6 +6,8 @@ The exercise uses a small 640 px wide SCARED stereo-endoscopy subset in `scared_
 
 ## Notebooks
 
+For Colab users who want to run the COLMAP and DA3 workflows in one runtime, use `notebooks/colmap_vs_da3_and_3dgs.ipynb`. It combines notebooks 01 and 02 and writes both pipelines' intermediate files into the same temporary output root.
+
 1. `notebooks/01_colmap_to_3dgs_expanded.ipynb`
    - Run COLMAP through `pycolmap` on the left endoscope stream.
    - Inspect the recovered cameras and sparse reconstruction.
