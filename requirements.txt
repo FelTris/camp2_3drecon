@@ -1,5 +1,6 @@
 matplotlib
-numpy<2
+numpy==1.26.4
+pandas==2.2.2
 opencv-python==4.11.0.86
 pillow
 plotly
@@ -13,7 +14,6 @@ nbconvert
 einops
 faiss-cpu
 numba
-pandas
 prettytable
 pypose
 pytest
