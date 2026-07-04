@@ -15,5 +15,5 @@ scared/
 test_dataset_9/
 
 notebooks/*.ipynb
-!notebooks/*_expanded.ipynb
+!notebooks/03_stereo_reconstruction_expanded.ipynb
 !notebooks/colmap_vs_da3_and_3dgs.ipynb
