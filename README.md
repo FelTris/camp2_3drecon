@@ -89,7 +89,7 @@ precomputed/01_colmap/every_5th/sparse/
 precomputed/01_colmap/every_10th/sparse/
 ```
 
-Set `RUN_COLMAP_RECONSTRUCTION = True` inside the notebook only if you intentionally want to rebuild these models. Recomputing COLMAP in Colab can take a long time, especially for the full frame sequence.
+Set `RUN_COLMAP_RECONSTRUCTION = True` inside the notebook only if you intentionally want to rerun COLMAP. With this flag enabled, the notebook ignores the bundled sparse models, clears the per-experiment runtime workspace under `outputs/01_colmap/`, and rebuilds feature extraction, sequential matching, and mapping from scratch. Recomputing COLMAP in Colab can take a long time, especially for the full frame sequence.
 
 ## Repository Contents
 
