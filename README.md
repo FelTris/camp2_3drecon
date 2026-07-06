@@ -59,7 +59,9 @@ The next notebook cell installs the reconstruction stack from the cloned checkou
 INSTALL_DEPENDENCIES = running_in_colab()
 ```
 
-The install cell streams the shell script output into the notebook with step markers and timestamps, so if Colab stalls you can see whether it is installing pip packages, building `gsplat`, or cloning an external repository.
+The install cell streams the shell script output into the notebook with step markers and timestamps, so if Colab stalls you can see whether it is installing pip packages, installing `gsplat`, or cloning an external repository.
+
+For `gsplat`, the installer first tries the official precompiled wheel index for matching Linux/Python/PyTorch/CUDA combinations. If no matching wheel is available for the current Colab runtime, it falls back to the PyPI package instead of building from a Git checkout.
 
 The installer reuses Colab's existing PyTorch when it is already available. Set `INSTALL_TORCH=1` before running the script if you want to force installation from `requirements-torch-cu118.txt`.
 

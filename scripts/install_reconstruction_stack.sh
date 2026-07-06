@@ -41,7 +41,41 @@ if command -v g++ >/dev/null 2>&1; then
   export CXX="${CXX:-$(command -v g++)}"
 fi
 log "Using CC=${CC:-unset} CXX=${CXX:-unset}"
-run python -m pip install --no-build-isolation -r "$ROOT/requirements-gsplat.txt"
+
+run python -m pip install ninja jaxtyping rich
+GSPLAT_WHEEL_INDEX="$(
+  python - <<'PY'
+import platform
+import re
+import sys
+
+import torch
+
+torch_match = re.match(r"^(\d+)\.(\d+)", torch.__version__)
+cuda = (torch.version.cuda or "").replace(".", "")
+
+if (
+    sys.platform.startswith("linux")
+    and platform.machine() == "x86_64"
+    and torch_match
+    and cuda
+):
+    torch_tag = "".join(torch_match.groups())
+    print(f"https://docs.gsplat.studio/whl/pt{torch_tag}cu{cuda}")
+PY
+)"
+if [ -n "$GSPLAT_WHEEL_INDEX" ]; then
+  log "Trying precompiled gsplat wheel from $GSPLAT_WHEEL_INDEX"
+  if python -m pip install -r "$ROOT/requirements-gsplat.txt" --index-url "$GSPLAT_WHEEL_INDEX"; then
+    log "Installed gsplat from a precompiled wheel."
+  else
+    log "No compatible precompiled gsplat wheel installed; falling back to PyPI."
+    run python -m pip install -r "$ROOT/requirements-gsplat.txt"
+  fi
+else
+  log "No published precompiled gsplat wheel matches this Python/PyTorch/CUDA runtime; installing from PyPI."
+  run python -m pip install -r "$ROOT/requirements-gsplat.txt"
+fi
 
 if [ ! -d "$ROOT/externals/Depth-Anything-3/.git" ]; then
   run git clone --depth 1 --recursive --shallow-submodules https://github.com/ByteDance-Seed/Depth-Anything-3.git "$ROOT/externals/Depth-Anything-3"
